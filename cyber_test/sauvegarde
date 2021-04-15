@@ -1,0 +1,8 @@
+                //Verification de la disponibilite du poste
+                if($donnees['disponibilite']==1){
+                    $disponibilite = 'indisponible';
+                }
+                else{
+                    $disponibilite = 'disponible';
+                };
+                                <span class="poste_disponibilite">' . $disponibilite . '</span>
