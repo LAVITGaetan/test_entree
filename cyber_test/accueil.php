@@ -70,11 +70,99 @@
 
         // Fenetre JS affichant un message 
         echo '<script> alert("L\'utilisateur a bien été ajouté");</script>';
+        echo '<script> document.location.replace("accueil.php");</script>';
 
         // Fermeture de la connexion à la BDD
         $bdd = null;
     }
     ?>
+
+    <!-- Liste des poste disponible -->
+    <h1 class="sous_titre">Liste des postes disponible</h1>
+    <div class="poste_container">
+        <?php
+        // Afficher les différents postes
+        include('config.php');
+        $reponse = $bdd->query('SELECT * FROM poste WHERE disponibilite = 1');
+        while ($donnees = $reponse->fetch()) {
+
+            //Verification du type du poste
+            if ($donnees['type'] == 'gaming') {
+                $image = 'gaming';
+            } else {
+                $image = 'bureau';
+            };
+
+            //Affichage du poste
+            echo '<div class="poste_carte">
+                <span class="poste_nom">' . $donnees['nom'] . '</span>
+                <img class="poste_logo" src="image/logo_' . $image . '.png">
+                <span class="poste_type">Type : ' . $donnees['type'] . '</span>
+                <div class="poste_options">
+                <form method="post" action="attribuer_poste.php?id_poste=' . $donnees['id'] . '">
+                <input type="hidden" name="id_poste" value="' . $donnees['id'] . '"/>
+                <input type="submit" class="poste_action" name="attribuer" value="attribuer" />
+                </form>
+                </div>
+                </div>';
+        }
+        ?>
+    </div>
+
+    
+<!-- Liste des poste en cours d'utilisation -->
+    <h1 class="sous_titre">Liste des postes en cours d'utilisation</h1>
+    <div class="poste_container">
+
+        <?php
+        // Afficher les différents postes
+        include('config.php');
+        $reponse = $bdd->query('SELECT utilisateur.nom AS nom_utilisateur, utilisateur.prenom, poste.nom, poste.type, poste.id AS id_poste, reservation.id, reservation.id_poste, reservation.id_utilisateur, reservation.date, reservation.heure_debut, reservation.minute_debut, reservation.heure_fin, reservation.minute_fin FROM poste,utilisateur,reservation WHERE reservation.id_utilisateur = utilisateur.id AND reservation.id_poste = poste.id');
+        while ($donnees = $reponse->fetch()) {
+
+            //Verification du type du poste
+            if ($donnees['type'] == 'gaming') {
+                $image = 'gaming';
+            } else {
+                $image = 'bureau';
+            };
+
+            //Affichage du poste
+            echo '<div class="poste_carte">
+                <span class="poste_nom">' . $donnees['nom'] . '</span>
+                <img class="poste_logo" src="image/logo_' . $image . '.png">
+                <span class="poste_type">Utilisateur : ' . $donnees['nom_utilisateur'] . ' ' . $donnees['prenom'] . '</span>
+                <span class="poste_type">Date : ' . $donnees['date'] . '</span>
+                <span class="poste_type">Début : ' . $donnees['heure_debut'] . 'h' . $donnees['minute_debut'] . '</span>
+                <span class="poste_type">Fin : ' . $donnees['heure_fin'] . 'h' . $donnees['minute_fin'] . '</span>
+                <div class="poste_options">
+                <form method="post" action="attribuer_poste.php?id_poste=' . $donnees['id'] . '&id_utilisateur=' . $donnees['id_utilisateur'] . '">
+                <input type="hidden" name="id_poste" value="' . $donnees['id'] . '"/>
+                <input type="submit" class="poste_action" name="attribuer" value="Attribuer" />
+                </form>
+                <form method="post">
+                <input type="hidden" name="id_poste" value="' . $donnees['id_poste'] . '"/>
+                <input type="hidden" name="id_reservation" value="' . $donnees['id'] . '"/>
+                <input type="submit" class="poste_action" name="annuler" value="Annuler" />
+                </form>
+                </div>
+                </div>';
+        }
+
+        if (isset($_POST['annuler'])) {
+            $requete = 'DELETE FROM reservation WHERE id="' . $_POST['id_reservation'] . '"';
+            $reponse = $bdd->query($requete);
+            //modifier la disponibilite du poste
+            $requete = 'UPDATE poste SET disponibilite = 1 WHERE id="' . $_POST['id_poste'] . '"';
+            $reponse = $bdd->query($requete);
+            //Fenetre JS affichant un message
+            echo '<script>alert("La reservation a bien été annulée");</script>';
+            //Raffraichir la page
+            echo '<script> document.location.replace("accueil.php");</script>';
+        }
+        ?>
+    </div>
+
 
     <!-- Script JS -->
     <script src="script.js"></script>

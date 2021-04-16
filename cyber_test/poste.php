@@ -60,12 +60,12 @@
         $_POST['type'] = htmlentities($_POST['type'], ENT_QUOTES);
 
         // Requete d'insertion des données dans la table 'utilisateur'
-        $requete = 'INSERT INTO poste VALUES(NULL, "' . $_POST['nom'] . '", "' . $_POST['type'] . '", NULL)';
+        $requete = 'INSERT INTO poste VALUES(NULL, "' . $_POST['nom'] . '", "' . $_POST['type'] . '", "1")';
         $resultat = $bdd->query($requete);
 
         // Fenetre JS affichant un message 
         echo '<script> alert("Le poste a bien été ajouté");</script>';
-        header('REfresh:0;');
+        echo '<script> document.location.replace("poste.php");</script>';
 
         // Fermeture de la connexion à la BDD
         $bdd = null;
@@ -108,7 +108,7 @@
             $requete = 'DELETE FROM poste WHERE id="' . $_POST['id_poste'] . '"';
             $resultat = $bdd->query($requete);
             echo '<script> alert("Le poste a bien été supprimé");</script>';
-            header('Refresh:0;');
+            echo '<script> document.location.replace("poste.php");</script>';
         }
         ?>
     </div>

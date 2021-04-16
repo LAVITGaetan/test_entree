@@ -20,10 +20,10 @@
     <!-- Titre de la page -->
     <h1 class="titre_principal">Affecter des utilisateurs aux postes</h1>
     <div class="poste_container">
-        <?php
+    <?php
         // Afficher les différents postes
         include('config.php');
-        $reponse = $bdd->query('SELECT utilisateur.nom AS nom_utilisateur, utilisateur.prenom, poste.nom, poste.type, poste.id, reservation.id_poste, reservation.id_utilisateur, reservation.date, reservation.heure, reservation.minute FROM poste,utilisateur,reservation WHERE reservation.id_utilisateur = utilisateur.id AND reservation.id_poste = poste.id');
+        $reponse = $bdd->query('SELECT * FROM poste WHERE disponibilite = 1');
         while ($donnees = $reponse->fetch()) {
 
             //Verification du type du poste
@@ -37,17 +37,11 @@
             echo '<div class="poste_carte">
                 <span class="poste_nom">' . $donnees['nom'] . '</span>
                 <img class="poste_logo" src="image/logo_' . $image . '.png">
-                <span class="poste_type">Utilisateur : ' . $donnees['nom_utilisateur'] . ' ' . $donnees['prenom'] . '</span>
-                <span class="poste_type">Date : ' . $donnees['date'] . '</span>
-                <span class="poste_type">Heure de fin : ' . $donnees['heure'] . 'h' . $donnees['minute'] . '</span>
+                <span class="poste_type">Type : ' . $donnees['type'] . '</span>
                 <div class="poste_options">
-                <form method="post" action="modifier_poste.php?id_poste=' . $donnees['id'] . '">
-                <input type="hidden" name="id_poste" value="' . $donnees['id'] . '" src="image/logo_modifier.png" />
-                <input type="submit" class="poste_action" name="modifier" value="Modifier" />
-                </form>
-                <form method="post">
-                <input type="hidden" name="id_poste" value="' . $donnees['id'] . '" src="image/logo_modifier.png" />
-                <input type="submit" class="poste_action" name="supprimer" value="Supprimer" />
+                <form method="post" action="attribuer_poste.php?id_poste=' . $donnees['id'] . '">
+                <input type="hidden" name="id_poste" value="' . $donnees['id'] . '"/>
+                <input type="submit" class="poste_action" name="attribuer" value="attribuer" />
                 </form>
                 </div>
                 </div>';

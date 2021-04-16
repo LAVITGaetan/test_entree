@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des membres</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Icone de navigateur-->
+    <link rel="icon" type="image/png" sizes="32x32" href="image/logo_blue.png">
+</head>
+
+<body>
+    <!-- inclure le fichier du menu à la page-->
+    <?php
+    include('menu.php');
+    ?>
+
+    <!-- Titre de la page -->
+    <h1 class="titre_principal">Affecter des utilisateurs aux postes</h1>
+    <div class="poste_container">
+        <?php
+        // Afficher les différents postes
+        include('config.php');
+        $reponse = $bdd->query('SELECT utilisateur.nom AS nom_utilisateur, utilisateur.prenom, poste.nom, poste.type, poste.id, reservation.id_poste, reservation.id_utilisateur, reservation.date FROM poste,utilisateur,reservation WHERE reservation.id_utilisateur = utilisateur.id AND reservation.id_poste = poste.id');
+        while ($donnees = $reponse->fetch()) {
+
+            //Verification du type du poste
+            if ($donnees['type'] == 'gaming') {
+                $image = 'gaming';
+            } else {
+                $image = 'bureau';
+            };
+
+            //Affichage du poste
+            echo '<div class="poste_carte">
+                <span class="poste_nom">' . $donnees['nom'] . '</span>
+                <img class="poste_logo" src="image/logo_' . $image . '.png">
+                <span class="poste_type">Utilisateur : ' . $donnees['nom_utilisateur'] . ' ' . $donnees['prenom'] . '</span>
+                <span class="poste_type">Date : ' . '$' . '</span>
+                <span class="poste_type">Heure de fin : ' . '$' . 'h' . '$' . '</span>
+                <div class="poste_options">
+                <form method="post" action="attribuer_poste.php?id_poste=' . $donnees['id'] . '&id_utilisateur=' . $donnees['id_utilisateur'] . '">
+                <input type="hidden" name="id_poste" value="' . $donnees['id'] . '"/>
+                <input type="submit" class="poste_action" name="attribuer" value="Attribuer" />
+                </form>
+                <form method="post">
+                <input type="hidden" name="id_poste" value="' . $donnees['id'] . '"/>
+                <input type="submit" class="poste_action" name="annuler" value="Annuler" />
+                </form>
+                </div>
+                </div>';
+        }
+        ?>
+    </div>
+    <!-- Script JS -->
+    <script src="script.js"></script>
+</body>
+
+</html>

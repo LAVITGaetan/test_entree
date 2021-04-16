@@ -7,8 +7,8 @@
     <title>Liste des membres</title>
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
-        <!-- Icone de navigateur-->
-        <link rel="icon" type="image/png" sizes="32x32" href="image/logo_blue.png">
+    <!-- Icone de navigateur-->
+    <link rel="icon" type="image/png" sizes="32x32" href="image/logo_blue.png">
 </head>
 
 <body>
@@ -62,6 +62,7 @@
 
         // Fenetre JS affichant un message 
         echo '<script> alert("L\'utilisateur a bien été ajouté");</script>';
+        echo '<script> document.location.replace("membre.php");</script>';
 
         // Fermeture de la connexion à la BDD
         $bdd = null;
@@ -108,7 +109,7 @@
 
             // Fenetre JS affichant un message 
             echo '<script> alert("L\'utilisateur a bien été modifié");</script>';
-            header('Refresh:0;');
+            echo '<script> document.location.replace("membre.php");</script>';
         }
 
         //Requete de suppression de l'utilisateur
@@ -118,7 +119,7 @@
 
             // Fenetre JS affichant un message 
             echo '<script> alert("L\'utilisateur a bien été supprimé");</script>';
-            header('Refresh:0;');
+            echo '<script> document.location.replace("membre.php");</script>';
         }
         ?>
     </table>
