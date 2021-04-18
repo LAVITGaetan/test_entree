@@ -17,14 +17,20 @@
     include('menu.php');
     ?>
 
-    <!-- Titre de la page -->
-    <h1 class="titre_principal">Bienvenue sur la page d'accueil</h1>
+
 
     <!-- Cartes liens vers les différentes pages -->
     <div class="container_lien">
-        <div class="lien_carte" onclick="location.href = 'attribution.php';"><span class="lien_carte_texte">Affecter à un poste</span></div>
-        <div class="lien_carte" onclick="location.href = 'poste.php';"><span class="lien_carte_texte">Gérer les postes</span></div>
-        <div class="lien_carte" onclick="location.href = 'membre.php';"><span class="lien_carte_texte">Gérer les membres</span></div>
+        <div class="lien_carte" onclick="location.href = 'attribution.php';">
+            <div><img class="lien_logo" src="image/logo_reservation.png" alt="logo de reservation"></div>
+            <span class="lien_carte_texte">Ajouter une réservation</span>
+        </div>
+        <div class="lien_carte" onclick="location.href = 'poste.php';">
+        <div><img class="lien_logo" src="image/logo_poste.png" alt="logo de gestion des postes"></div>
+        <span class="lien_carte_texte">Gérer les postes</span></div>
+        <div class="lien_carte" onclick="location.href = 'membre.php';">
+        <div><img class="lien_logo" src="image/logo_membre.png" alt="logo de gestion des membres"></div>
+        <span class="lien_carte_texte">Gérer les membres</span></div>
     </div>
 
     <h1 class="sous_titre">Ajouter un utilisateur</h1>
@@ -98,10 +104,11 @@
                 <span class="poste_nom">' . $donnees['nom'] . '</span>
                 <img class="poste_logo" src="image/logo_' . $image . '.png">
                 <span class="poste_type">Type : ' . $donnees['type'] . '</span>
+                <span class="poste_type">Etat : disponible</span>
                 <div class="poste_options">
                 <form method="post" action="attribuer_poste.php?id_poste=' . $donnees['id'] . '">
                 <input type="hidden" name="id_poste" value="' . $donnees['id'] . '"/>
-                <input type="submit" class="poste_action" name="attribuer" value="attribuer" />
+                <input type="submit" class="poste_action" name="attribuer" value="Ajouter une réservation" />
                 </form>
                 </div>
                 </div>';
@@ -109,8 +116,8 @@
         ?>
     </div>
 
-    
-<!-- Liste des poste en cours d'utilisation -->
+
+    <!-- Liste des poste en cours d'utilisation -->
     <h1 class="sous_titre">Liste des postes en cours d'utilisation</h1>
     <div class="poste_container">
 
@@ -138,7 +145,7 @@
                 <div class="poste_options">
                 <form method="post" action="attribuer_poste.php?id_poste=' . $donnees['id'] . '&id_utilisateur=' . $donnees['id_utilisateur'] . '">
                 <input type="hidden" name="id_poste" value="' . $donnees['id'] . '"/>
-                <input type="submit" class="poste_action" name="attribuer" value="Attribuer" />
+                <input type="submit" class="poste_action" name="attribuer" value="Ajouter une réservation" />
                 </form>
                 <form method="post">
                 <input type="hidden" name="id_poste" value="' . $donnees['id_poste'] . '"/>

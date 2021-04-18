@@ -6,8 +6,11 @@
 
 /* Image de fond du site*/
 body{
-    background-color: #1F2833;
+    background: url(image/wallpaper.png);
     font-family: Lora;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 /* Police*/
@@ -19,12 +22,12 @@ body{
 /* Retirer le style des liens*/
 a{
     text-decoration: none;
-    color: #f1f3f5;
+    color: #EEEEEE;
 }
 /* Titre de la page de connexion*/
 
 .titre_connexion{
-    color: #45a29e;
+    color: #222831;
     width: 50%;
     margin: 75px auto 0px auto;
     text-align: center;
@@ -33,23 +36,26 @@ a{
 }
 /* Titres des page*/
 .titre_principal{
-    color: #304D62;
-    background-color: #f1f3f5;
+    color: #393E46;
+    background-color: #eeeeeeda;
     padding: 12px;
     width: 25%;
-    margin: 50px auto;
+    margin: 15px auto;
     text-align: center;
     font-size: 22px;
     font-weight: bold;
+    border-radius: 4px;
 }
 
 .sous_titre{
-    color: #f1f3f5;
-    width: 50%;
-    margin: 50px auto 25px auto;
+    color: #EEEEEE;
+    background-color: #222831;
+    width: 100%;
+    margin: 50px auto 0 auto;
+    padding: 50px;
     text-align: center;
     font-size: 20px;
-    font-weight: bold;
+    font-weight: normal;
 }
 
 /* Menu du site*/
@@ -57,7 +63,7 @@ a{
     width: 100%;
     height: 100px;
     display: flex;
-    background-color: #304D62;
+    background-color: #EEEEEE;
 }
 
 .menu_home{
@@ -66,7 +72,7 @@ a{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #304D62;
+    background-color: #EEEEEE;
 }
 
 .menu_logo{
@@ -79,7 +85,7 @@ a{
 .menu_logo:hover{
     transition: .3s;
     cursor: pointer;
-    box-shadow: 0px -2px 10px 2px #304D62;
+    box-shadow: 0px 0px 7px 1px #222831;
 }
 
 .menu_liste{
@@ -94,16 +100,15 @@ a{
     padding: 5px;
     float: left;
     list-style-type: none;
-    color: #f1f3f5;
-    font-size: 21px;
-    text-shadow: 0px 0px 6px #304D62;
-    border-bottom: 1px solid transparent;
+    color: #222831;
+    font-size: 21px;  
+    font-weight: bold;              
 }
 
 .menu_liste_item:hover{
     transition: .3s;
     cursor: pointer;
-    text-shadow: none;
+    text-shadow: 0px 0px 6px #FFD369;
 }
 
 .menu_timer{
@@ -112,11 +117,12 @@ a{
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #f1f3f5;
+    color: #EEEEEE;
 }
 /* Fin du menu du site*/
 
 /* Page de connexion*/
+
 .formulaire_connexion{
     width: 100%;
     height: auto;
@@ -124,6 +130,7 @@ a{
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    background-color: #222831;
 }
 
 .logo_formulaire{
@@ -133,44 +140,48 @@ a{
 .connexion_label{
     width: 200px;
     text-align: center;
-    color: #f1f3f5;
+    color: #EEEEEE;
     font-size: 17px;
 }
 
 .connexion_entree{
     width: 250px;
-    background-color: #1F2833;
+    background-color: #EEEEEE;
     border: none;
-    border-bottom: 2px solid #45a29e;
+    border-bottom: 2px solid #222831;
     margin: 10px 0 40px -25px;
-    box-shadow: 0px 0px 4px 1px #45a29e;
-    color: #f1f3f5;
+    box-shadow: 0px 0px 4px 1px #222831;
+    color: #EEEEEE;
     font-size: 17px;
     padding: 5px;
     border-radius: 4px;
+    box-shadow: 0px 0px 4px 1px #EEEEEE;
 }
 
 .formulaire_bouton{
+    transition: .3s;
     padding: 12px;
-    background-color: #1F2833;
-    color: #f1f3f5;
+    background-color: #393E46;
+    color: #EEEEEE;
     border: none;
     border-radius: 4px;
     font-size: 17px;
-    box-shadow: 0px 0px 4px 1px #45a29e;
+    box-shadow: 0px 0px 4px 1px #EEEEEE;
 }
 
 .formulaire_bouton:hover{
     transition: .3s;
     cursor: pointer;
+    color: #FFD369;
+    box-shadow: 0px 0px 4px 1px #FFD369;
 }
 
 /* Page d'accueil*/
 .container_lien{
     width: 100%;
-    height: 300px;
+    height: auto;
     margin-top: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
     display: flex;
     justify-content: space-evenly;
 }
@@ -178,21 +189,36 @@ a{
 .lien_carte{
     width: 30%;
     height: 250px;
-    background-color: #45a29e;
+    background-color: #222831fd;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     border-radius: 6px;
+    box-shadow: 0px 0px 7px 1px #222831;
+}
+
+.lien_logo{
+    width: 124px;
+    
 }
 
 .lien_carte:hover{
     cursor: pointer;
+    transition: .3s;
+    box-shadow: 0px 0px 7px 1px #FFD369;
+}
+
+.lien_carte:hover .lien_carte_texte{
+    transition: .3s;
 }
 
 .lien_carte_texte{
-    color: #f1f3f5;
-    padding: 20px;
+    color: #EEEEEE;
+    padding: 17px;
+    text-align: center;
     font-size: 25px;
+    line-height: 40px;
 }
 
 /* Formulaire d'ajout de membre*/
@@ -203,38 +229,38 @@ a{
     justify-content: space-evenly;
     align-items: center;
     margin-bottom: 50px;
-    margin-top: 25px;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    background-color: #304D62;
+    padding-top: 15px;
+    padding-bottom: 65px;
+    background-color: #222831;
 }
 
 .ajout_label{
     text-align: center;
-    color: #f1f3f5;
+    color: #EEEEEE;
     font-size: 17px;
 }
 
 .ajout_entree{
     width: 250px;
-    background-color: #f1f3f5;
+    background-color: #EEEEEE;
     border: none;
-    color: #1F2833;
+    color: #EEEEEE;
     font-size: 17px;
     padding: 5px;
     border-radius: 4px;
     margin-left: 20px;
+    box-shadow: 0px 0px 4px 1px #EEEEEE;
 }
 
 select{
     padding: 6px;
-    background-color: #f1f3f5;
-    color: #304D62;
+    background-color: #EEEEEE;
+    color: #222831;
     border-radius: 4px;
 }
 
 option{
-    color: #1F2833;
+    color: #EEEEEE;
 }
 
 /* Page de gestion des utilisateurs*/
@@ -246,12 +272,12 @@ option{
 .tableau_en-tete{
     width: 25%;
     padding: 8px;
-    background-color: #304D62;
-    color: #f1f3f5;
+    background-color: #222831;
+    color: #EEEEEE;
 }
 
 .tableau_contenu{
-    background-color: #304D62;
+    background-color: #222831;
     padding: 8px;
     font-size: 17px;
 }
@@ -260,7 +286,7 @@ option{
     border: none;
     width: 100%;
     height: 30px;
-    color: #f1f3f5;
+    color: #EEEEEE;
     background: none;
 }
 
@@ -272,43 +298,50 @@ option{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    margin-top: -50px;
+    padding-bottom: 50px;
+    padding-top: 50px;
 }
 
 .poste_carte{
-    width: 22%;
+    width: 30%;
+    height: auto;
+    background-color: #222831fd;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    margin-top: 50px;
-    background-color: #45a29e;
-    padding: 20px;
-    border-radius: 12px;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 6px;
+    box-shadow: 0px 0px 7px 1px #222831;
+    padding-top: 25px;
+    padding-bottom: 25px;
 }
 
 .poste_logo{
     width: 125px;
-    margin: 15px 0;
+    border-radius: 4px;
+    margin-top: 25px;
 }
 
 .poste_nom{
-    color: #1F2833;
-    font-weight: bold;
+    color: #EEEEEE;
+    font-weight: normal;
     font-size: 20px;
+    margin-top: 25px;
+    font-weight: bold;
 }
 
 .poste_type{
-    color: #1F2833;
-    font-weight: bold;
+    color: #EEEEEE;
     font-size: 17px;
+    margin-top: 25px;
 }
 
 .poste_action{
-    width: 150px;
-    padding: 8px;
-    background-color: #1F2833;
-    color: #f1f3f5;
+    padding: 12px;
+    background-color: #222831;
+    color: #EEEEEE;
     border: none;
     border-radius: 4px;
     margin-top: 25px;
+    font-size: 17px;
 }

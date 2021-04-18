@@ -12,6 +12,8 @@
 </head>
 
 <body>
+
+<div class="connexion_container">
     <!-- Titre de la page -->
     <h1 class="titre_connexion">Bienvenue sur la page de connexion</h1>
 
@@ -20,7 +22,7 @@
 
         <!-- Logo -->
         <div class="formulaire_logo">
-            <img class="logo_formulaire" src="image/logo_blue.png" alt="logo du formulaire">
+            <img class="logo_formulaire" src="image/logo_yellow.png" alt="logo du formulaire">
         </div>
 
         <!-- Champ de saisi du pseudo -->
@@ -69,6 +71,7 @@
         }
     }
     ?>
+    </div>
 </body>
 
 </html>
